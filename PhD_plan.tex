@@ -30,27 +30,27 @@
 
 \begin{center}
     \Large{\textbf{PhD Plan}}\\[0.15cm]
-    \large{Mark Muetzelfeldt 3/5/17 [6\ts{th} Draft]}\\ 
+    \large{Mark Muetzelfeldt 30/6/2017 [7\ts{th} Draft]}\\ 
     \rule{\textwidth}{0.2mm}
 \end{center}
 
 \section*{Overview}
 % iUM overview/science/questions
 
-The overall goal of the project is to develop scale-awareness in convective cloud parametrization schemes. More specifically, I will be looking at deep cumulus convection, using idealized RCE models over a bi-periodic domain [before moving on to investigating it in global models]. I will look at how deep cumulus parametrization schemes can be made scale-aware when going from coarse resolutions to finer resolutions in the convective grey zone. To meet this goal, I will try to answer the following questions:
+The overall goal of the project is to develop scale-awareness in convective cloud parametrization schemes. More specifically, I will be looking at deep cumulus convection, using idealized RCE models over a bi-periodic domain [before moving on to investigating it in global models]. I will look at how deep cumulus parametrization schemes can be made scale-aware when going from coarse resolutions to finer resolutions in the convective grey-zone. To meet this goal, I will try to answer the following questions:
 
 \begin{enumerate}
 % What is causing the organization?
     \item What effect does convective organization have on the spatial and temporal variability of idealized RCE models?
-    \item How can characterization of this convective organization be used to inform the design of a scale-aware parametrization scheme?
     \item What are the main mechanisms that cause this convective organization?
+    \item How can characterization of this convective organization be used to inform the design of a scale-aware parametrization scheme?
     \item How can information about fluxes in a high-resolution idealized model be incorporated into a lower-resolution model's parametrization scheme?
     \item  {[How does this scheme behave and perform when it is used in global simulations?]}
 \end{enumerate}
 
-The following phases form a road-map of how I intend to go about answering these questions. Phase 0 will put the numerical model through its paces, allowing me to have confidence in its use for the subsequent phases. Phase 1 will address Q1, using a high-resolution model to perform experiments that shed light on the convective organization in idealized models. Phase 2 will address Q2 and Q3, using lower-resolution simulations to test the parametrization scheme in an idealized environment. Phases 1 and 2 combined will allow me to investigate Q4 by seeing how to use information from the high-resolution simulations to improve the lower-resolution parametrization schemes. [Phase 3 will address Q5, using the UM to run global models.]
+The following phases form a road-map of how I intend to go about answering these questions. Phase 0 will put the numerical model through its paces, allowing me to have confidence in its use for the subsequent phases. Phases 1 and 2 will address Q1 and Q2, using a CRM/high-resolution model to perform experiments that shed light on the convective organization in idealized models. Phase 3 will address Q3 and Q4, using lower-resolution simulations to test the parametrization scheme in an idealized environment. Phases 1, 2 and 3 combined will allow me to investigate Q4 by seeing how to use information from the high-resolution simulations to improve the lower-resolution parametrization schemes. [Phase 4 will address Q5, using the UM to run global models.]
 
-Each phase comes with deliverables: reports, experimental results or code that are necessary for the completion of that phase. The reports will be based on some aspect of the analysis carried out as part of the phase, and will provide useful material in the form of figures and text when writing up my thesis. The experimental results will be runs of numerical models. The code will be the analysis code that I am using to run all the post run analysis - such as calculating momentum fluxes from the $u$ wind increments. I will keep all of this in a code project called archer\_analysis. Additionally, I will make a tool called omnium, which will provide tools for e.g. converting from .pp1 to to .nc files and viewing the data.
+Each phase comes with deliverables: reports, experimental results or code that are necessary for the completion of that phase. The reports will be based on some aspect of the analysis carried out as part of the phase, and will provide useful material in the form of figures and text when writing up my thesis. The experimental results will be runs of numerical models. The code will be the analysis code that I am using to run all the post run analysis - such as calculating momentum fluxes from the $u$ wind increments. I will keep all of this in a code project called suitably revisioned code repositories. Additionally, I will make a tool called omnium, which will provide tools for e.g. converting from .pp1 to to .nc files and viewing the data.
 
 \section*{Phase 0 - iUM checks and balances}
 % Uses a prescribed cooling model
@@ -67,21 +67,18 @@ This phase was finished by the start of February 2017 on hand over of conservati
 \subsection*{Deliverables}
 \begin{enumerate}
     \item Experiments: energy/moisture balance in high-resolution simulations. MC on/off with a full, useful and packaged set of diagnostics that allow for easy switching on/off of various options.
-    \item Report: detailed model setup: base domain/timestep etc. and which schemes are in use.
-    \item [Report: energy/moisture conservation in the iUM: how it is affected by MC and where it is worst.]
 \end{enumerate}
 
-\section*{Phase 1 - Convective organization in high-resolution RCE models}
+\section*{Phase 1 - Convective organization in CRM RCE models}
 % iUM (+MONC?)
 % cell/cloud tracking (integrate or dev)
 % cloud stats: lifetimes, locations, spacing
 % varying organization: changing windshear
-This phase will use the high-resolution model tested in the previous phase and begin to answer the questions posed in the overview. As well as the analysis from before, I will investigate the statistics of the clouds produced in the model, which will require the development or integration of existing cloud classification/tracking tools. These statistics will include the lifetime, location and spacing of the clouds in the models, as well as detailed analysis of the cloud such as their vertical profiles at different points in their life-cycle, and aggregate statistics of e.g. total precipitation over their lives.
+This phase will use the CRM tested in the previous phase and begin to answer the questions posed in the overview. As well as the analysis from before, I will investigate the statistics of the clouds produced in the model, which will require the development or integration of existing cloud classification/tracking tools. These statistics will include the lifetime, location and spacing of the clouds in the models, as well as detailed analysis of the cloud such as their vertical profiles at different points in their life-cycle, and aggregate statistics of e.g. total precipitation over their lives.
 
 % investigation of the effects of upscaling to various res
 % diagnose *resolved* fluxes of heat, moisture ($\rho q w$ etc.)
-The analysis will include looking at the effects of upscaling the model to various resolutions, and the diagnosis of fluxes of heat and moisture ($\rho q w$ etc.). The proposed mechanism for changing the degree of convective organization is to vary the windshear across the domain.
-
+The analysis will include looking at the effects of upscaling the model to various resolutions, and the diagnosis of mass fluxes. The proposed mechanism for changing the degree of convective organization is to vary the windshear across the domain.
 
 \subsection*{Time frame}
 
@@ -98,25 +95,33 @@ This phase should be finished by July 2017. (Originally May 2017)
 % omnium beta + cloud tracking code
 % Phase 2 detailed plan
 \begin{enumerate}
-    \item Experiments: high-resolution experiments.
-    \item Report: literature review of high-resolution modelling. (Finished by MC4, July 2017)
-    \item Report: how cloud statistics are affected by degree of organization.
-    \item Report: analysis of fluxes of energy/moisture. (What will this contain?)
+    \item Experiments: CRM experiments.
+    \item Report: Draft paper - review of CRM, how cloud statistics are affected by degree of organization. (Finished by MC4, July 2017)
     \item Code: upscaling and variability analysis.
 \end{enumerate}
 
-\section*{Phase 2 - Convective organization in grey-zone RCE models}
-% run at variety of res, from fully p'trized to ~explicit conv.
-% run at LS with >1 scheme: GR, KF, PC
-% run in GZ with PC
-% mod to PC based on diag of organization
-% comparison with equiv high-res runs
-% investigate scale-awareness of schemes
-(Here things get more speculative and subject to change) Run at a variety of resolutions, from fully parametrized down to explicitly resolved deep cumulus convection. Run with a number of schemes: GR, KF, PC. Run in GZ with PC. Modification the PC based on diagnosis of organization in Phase 1. Comparison with equivalent high-resolution runs. Investigate how the schemes perform in terms of scale-awareness.
+\section*{Phase 2 - Convective organization in high-resolution RCE models}
+
+Going beyond the work of the previous phase, this will use high-resolution models (\SI{250}{m}), to improve the representation of the convective cells. The analysis carried out will be similar to in the previous phase. 
 
 \subsection*{Time frame}
 
-This phase should be finished by December 2017. (Originally October 2017.)
+This phase should be finished by September 2017.
+
+\subsection*{Deliverables}
+\begin{enumerate}
+    \item Experiments: High-resolution experiments.
+    \item Draft paper: review of high-resolution modelling. Comparisons with CRM simulations.
+    \item Code: upscaling and variability analysis. (High-res capable)
+\end{enumerate}
+
+\section*{Phase 3 - Convective organization in parametrized grey-zone RCE models}
+Run at a variety of resolutions in the soft grey-zone. Run with a number of schemes: GR, KF, PC. Run in GZ with PC. Modification the PC based on analysis of mass flux variability in Phases 1/2. Specifically, change mass fluxes based on grid-scale shear. Comparison with equivalent CRM/high-resolution runs. Investigate how the schemes perform in terms of scale-awareness.
+
+\subsection*{Time frame}
+
+Progress to be made by December 2017.
+This phase should be finished by Q1 2018.
 
 \subsection*{Deliverables}
 % lit review of parametrized modelling/scale-awareness and parametrization
@@ -124,15 +129,15 @@ This phase should be finished by December 2017. (Originally October 2017.)
 % comparison of different schemes above, and how well they compare to high-res
 % Phase 3 plan
 \begin{enumerate}
-    \item Experiments: series of experiments run at various resolutions, with a variety of schemes.
+    \item Experiments: series of experiments run at various resolutions (\SI{10}{km}-\SI{50}{km}), with a variety of schemes.
     \item Report: literature review of parametrized modelling, scale-awareness and stochastic parametrization schemes.
     \item Report: investigation of the dependence of parametrized models on resolution.
     \item Report: comparison of different schemes above, and how well they compare to high-resolution runs.
-    \item Code: omnium version 1.0.
 \end{enumerate}
 
-%\section*{Phase 3 - Testing behaviour and performance of parametrization scheme in a global model}
+\section*{Phase 4 - Testing behaviour and performance of parametrization scheme in a global model}
 
-%[TBD]
+[Subject to change] 
+Investigate how modified parametrization scheme performs in a GCM. Whether it improves know biases etc. 
 
 \end{document}
